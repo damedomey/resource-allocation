@@ -82,12 +82,14 @@
             </div>
 
             <div class="checkbox-container">
-                <label for="accessible">Équipements disponibles *</label>
+                <label for="equipmentInput">Équipements disponibles *</label>
             </div>
 
             <div class="users-checkbox-container">
                 <div class="equipment-container">
-                    <input type="text" id="equipmentInput" placeholder="EX. Projecteur">
+                    <select id="equipmentInput">
+                        <option disabled selected>Sélectionnez un équipement</option>
+                    </select>
                     <button id="addEquipment" type="button">+</button>
                     <ul id="equipmentList"></ul>
                 </div>

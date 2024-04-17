@@ -1,0 +1,22 @@
+[
+  {
+    "id": "student",
+    "name": "Etudiant"
+  },
+  {
+    "id": "manager",
+    "name": "Manager"
+  },
+  {
+    "id": "teachers",
+    "name": "Professeurs"
+  },
+  {
+    "id": "apprentices",
+    "name": "Alternants"
+  },
+  {
+    "id": "others",
+    "name": "Autres"
+  }
+]
