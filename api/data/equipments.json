@@ -1,0 +1,50 @@
+[
+  {
+    "id": "projector",
+    "name": "Projecteur"
+  },
+  {
+    "id": "laptop",
+    "name": "Ordinateur portable"
+  },
+  {
+    "id": "desktop",
+    "name": "Ordinateur de bureau"
+  },
+  {
+    "id": "printer",
+    "name": "Imprimante"
+  },
+  {
+    "id": "scanner",
+    "name": "Scanner"
+  },
+  {
+    "id": "microphone",
+    "name": "Microphone"
+  },
+  {
+    "id": "speaker",
+    "name": "Haut-parleur"
+  },
+  {
+    "id": "monitor",
+    "name": "Moniteur"
+  },
+  {
+    "id": "router",
+    "name": "Routeur"
+  },
+  {
+    "id": "switch",
+    "name": "Switch"
+  },
+  {
+    "id": "access-point",
+    "name": "Point d'accès"
+  },
+  {
+    "id": "ups",
+    "name": "Onduleur"
+  }
+]

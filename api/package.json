@@ -1,0 +1,31 @@
+{
+  "name": "allocation-api",
+  "version": "1.0.0",
+  "description": "Backend of resource allocation application",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js",
+    "watch": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/damedomey/resource-allocation.git"
+  },
+  "keywords": [
+    "resource",
+    "allocation;",
+    "office;",
+    "shared",
+    "resource"
+  ],
+  "author": "AMEDOMEY Roméo David",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/damedomey/resource-allocation/issues"
+  },
+  "homepage": "https://github.com/damedomey/resource-allocation#readme",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
