@@ -1,0 +1,26 @@
+[
+  {
+    "id": "individual-office",
+    "name": "Individual office"
+  },
+  {
+    "id": "shared-office",
+    "name": "Shared office"
+  },
+  {
+    "id": "meeting",
+    "name": "Meeting Room"
+  },
+  {
+    "id": "classroom",
+    "name": "Classroom"
+  },
+  {
+    "id": "amphi",
+    "name": "Amphi"
+  },
+  {
+    "id": "office",
+    "name": "Bureau"
+  }
+]

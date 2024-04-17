@@ -85,9 +85,8 @@ document.addEventListener('DOMContentLoaded', function () {
         // Affichez les données du formulaire dans la console pour vérification
         console.log('Données du formulaire:', formData);
 
-        // Ici, le code pour envoyer les données "formData" au serveur 
+        // Ici, le code pour envoyer les données "formData" au serveur
 
 
     });
-}
-);
+});
