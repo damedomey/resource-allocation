@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire d'Enregistrement des Ressources</title>
+    <link rel="stylesheet" href="FormulaireEnregistrement.css">
+</head>
+
+<body>
+    <div class="form-container">
+        <form id="resourceForm">
+            <h1>Formulaire d'Enregistrement des Ressources</h1>
+            <label for="resourceName">Nom de la ressource *</label>
+            <input type="text" id="resourceName" name="resourceName" required
+                placeholder="Indiquez le nom officiel de la ressource">
+            <label for="maxCapacity">Capacité maximale *</label>
+            <input type="number" id="maxCapacity " name="maxCapacity" required
+                placeholder="Nombre maximum de personnes pouvant occuper la ressource">
+            <label for="areaSize">Superficie en m² *</label>
+            <input type="number" id="areaSize" name="areaSize" required
+                placeholder="Surface totale de la ressource en mètres carrés">
+            <div class="time-container">
+                <h2>Plage horaire d'utilisation *</h2>
+                <div class="inputs-container">
+                    <div class="input-group">
+                        <label for="startTime">Début *</label>
+                        <input type="time" id="startTime" name="startTime" required placeholder="EX. 08h:00">
+                    </div>
+                    <div class="input-group">
+                        <label for="endTime">Fin *</label>
+                        <input type="time" id="endTime" name="endTime" required placeholder="EX. 17h:00">
+                    </div>
+                </div>
+            </div>
+            <div class="select-container">
+                <label for="resourceType">Type d'occupation de la ressource *</label>
+                <div class="select-wrapper">
+                    <select id="resourceType" name="resourceType" required>
+                        <option value="bureau">Bureau</option>
+                        <option value="salle_reunion">Salle de réunion</option>
+                        <option value="individuel">Individuel</option>
+                        <option value="salle_cours">Salle de cours</option>
+                        <option value="amphi">Amphi</option>
+                        <option value="salle_tp">Salle de TP</option>
+                    </select>
+                </div>
+            </div>
+            <div class="checkbox-container">
+                <label for="accessible">Accessibilité handicapé *</label>
+            </div>
+            <div class="checkbox-wrapper">
+                <label for="accessible" class="checkbox-label">
+                    <input type="checkbox" id="accessible" name="accessible">
+                    Accessibilité handicapé
+                    <span class="checkbox-icon">♿</span> <!-- Vous pouvez remplacer cela par une véritable icône -->
+                </label>
+            </div>
+
+            <div class="checkbox-container">
+                <label for="accessible">Utilisateurs autorisés *</label>
+            </div>
+            <div class="users-checkbox-container">
+                <div class="checkboxes-grid">
+                    <div class="checkbox-wrapper-users">
+                        <input type="checkbox" id="students" name="userType" value="etudiants">
+                        <label for="students" class="checkbox-label">Étudiants</label>
+                    </div>
+                    <div class="checkbox-wrapper-users">
+                        <input type="checkbox" id="teachers" name="userType" value="profs">
+                        <label for="teachers" class="checkbox-label">Profs</label>
+                    </div>
+                    <div class="checkbox-wrapper-users">
+                        <input type="checkbox" id="managers" name="userType" value="manager">
+                        <label for="managers" class="checkbox-label">Manager</label>
+                    </div>
+                    <div class="checkbox-wrapper-users">
+                        <input type="checkbox" id="alternating" name="userType" value="alternances">
+                        <label for="alternating" class="checkbox-label">Alternances</label>
+                    </div>
+                    <div class="checkbox-wrapper-users">
+                        <input type="checkbox" id="others" name="userType" value="autre">
+                        <label for="others" class="checkbox-label">Autre</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="checkbox-container">
+                <label for="accessible">Équipements disponibles *</label>
+            </div>
+
+            <div class="users-checkbox-container">
+                <div class="equipment-container">
+                    <input type="text" id="equipmentInput" placeholder="EX. Projecteur">
+                    <button id="addEquipment" type="button">+</button>
+                    <ul id="equipmentList"></ul>
+                </div>
+            </div>
+            <input type="submit" value="Enregistrer">
+        </form>
+    </div>
+    <script src="FormulaireEnregistrement.js"></script>
+</body>
