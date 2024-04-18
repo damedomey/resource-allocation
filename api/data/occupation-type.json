@@ -22,5 +22,9 @@
   {
     "id": "office",
     "name": "Bureau"
+  },
+  {
+    "id": "offices",
+    "name": "x3"
   }
 ]
