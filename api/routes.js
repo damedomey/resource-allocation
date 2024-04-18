@@ -11,5 +11,6 @@ router.get('/equipments', equipmentController.getAllEquipment);
 router.get('/occupation-types', occupationTypeController.getAllTypes);
 router.get('/authorized-users', authorizedUserController.getAllAuthorizedUsers);
 router.post('/resources', resourceController.createResource);
+router.get('/resources/form', resourceController.getForm);
 
 module.exports = router;

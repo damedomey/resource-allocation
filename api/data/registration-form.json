@@ -1,0 +1,147 @@
+[
+    {
+        "type": "text",
+        "id": "resourceName",
+        "name": "resourceName",
+        "required": true,
+        "placeholder": "Indiquez le nom officiel de la ressource",
+        "label": "Nom de la ressource"
+    },
+    {
+        "type": "number",
+        "id": "maxCapacity",
+        "name": "maxCapacity",
+        "required": true,
+        "placeholder": "Nombre maximum de personnes pouvant occuper la ressource",
+        "label": "Capacité maximale"
+    },
+    {
+        "type": "number",
+        "id": "areaSize",
+        "name": "areaSize",
+        "required": true,
+        "placeholder": "Surface totale de la ressource en mètres carrés",
+        "label": "Superficie en m²"
+    },
+    {
+        "groupLabel": "Plage horaire d'utilisation",
+        "fields": [
+            {
+                "type": "time",
+                "id": "startTime",
+                "name": "startTime",
+                "required": true,
+                "placeholder": "EX. 08h:00",
+                "label": "Début"
+            },
+            {
+                "type": "time",
+                "id": "endTime",
+                "name": "endTime",
+                "required": true,
+                "placeholder": "EX. 17h:00",
+                "label": "Fin"
+            }
+        ]
+    },
+    {
+        "type": "select",
+        "id": "resourceType",
+        "name": "resourceType",
+        "required": true,
+        "label": "Type d'occupation de la ressource",
+        "options": [
+            {
+                "value": "",
+                "text": "Select type",
+                "disabled": true,
+                "selected": true
+            },
+            {
+                "value": "bureau",
+                "text": "Bureau"
+            },
+            {
+                "value": "salle_reunion",
+                "text": "Salle de réunion"
+            },
+            {
+                "value": "individuel",
+                "text": "Individuel"
+            },
+            {
+                "value": "salle_cours",
+                "text": "Salle de cours"
+            },
+            {
+                "value": "amphi",
+                "text": "Amphi"
+            },
+            {
+                "value": "salle_tp",
+                "text": "Salle de TP"
+            }
+        ]
+    },
+    {
+        "type": "checkbox",
+        "id": "accessible",
+        "name": "accessible",
+        "required": false,
+        "label": "Accessibilité handicapé",
+        "checkboxLabel": "Accessibilité handicapé",
+        "icon": "♿"
+    },
+    {
+        "label": "Utilisateurs autorisés",
+        "checkboxes": [
+            {
+                "type": "checkbox",
+                "id": "students",
+                "name": "userType",
+                "value": "etudiants",
+                "label": "Étudiants"
+            },
+            {
+                "type": "checkbox",
+                "id": "teachers",
+                "name": "userType",
+                "value": "profs",
+                "label": "Profs"
+            },
+            {
+                "type": "checkbox",
+                "id": "managers",
+                "name": "userType",
+                "value": "manager",
+                "label": "Manager"
+            },
+            {
+                "type": "checkbox",
+                "id": "alternating",
+                "name": "userType",
+                "value": "alternances",
+                "label": "Alternances"
+            },
+            {
+                "type": "checkbox",
+                "id": "others",
+                "name": "userType",
+                "value": "autre",
+                "label": "Autre"
+            }
+        ]
+    },
+    {
+        "id": "equipmentContainer",
+        "label": "Équipements disponibles",
+        "type": "equipmentSelector",
+        "options": [
+            {"value": "projector", "text": "Projecteur"},
+            {"value": "whiteboard", "text": "Tableau blanc"},
+            {"value": "computer", "text": "Ordinateur"},
+            {"value": "video_conference", "text": "Matériel de vidéoconférence"}
+        ]
+    }
+    
+]
