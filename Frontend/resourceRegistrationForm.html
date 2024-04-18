@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulaire d'Enregistrement des Ressources</title>
-    <link rel="stylesheet" href="FormulaireEnregistrement.css">
+    <link rel="stylesheet" href="assets/css/resourceRegistrationForm.css">
 </head>
 
 <body>
@@ -16,7 +16,7 @@
             <input type="text" id="resourceName" name="resourceName" required
                 placeholder="Indiquez le nom officiel de la ressource">
             <label for="maxCapacity">Capacité maximale *</label>
-            <input type="number" id="maxCapacity " name="maxCapacity" required
+            <input type="number" id="maxCapacity" min="1" name="maxCapacity" required
                 placeholder="Nombre maximum de personnes pouvant occuper la ressource">
             <label for="areaSize">Superficie en m² *</label>
             <input type="number" id="areaSize" name="areaSize" required
@@ -38,12 +38,7 @@
                 <label for="resourceType">Type d'occupation de la ressource *</label>
                 <div class="select-wrapper">
                     <select id="resourceType" name="resourceType" required>
-                        <option value="bureau">Bureau</option>
-                        <option value="salle_reunion">Salle de réunion</option>
-                        <option value="individuel">Individuel</option>
-                        <option value="salle_cours">Salle de cours</option>
-                        <option value="amphi">Amphi</option>
-                        <option value="salle_tp">Salle de TP</option>
+                        <option disabled selected>Select type</option>
                     </select>
                 </div>
             </div>
@@ -87,12 +82,14 @@
             </div>
 
             <div class="checkbox-container">
-                <label for="accessible">Équipements disponibles *</label>
+                <label for="equipmentInput">Équipements disponibles *</label>
             </div>
 
             <div class="users-checkbox-container">
                 <div class="equipment-container">
-                    <input type="text" id="equipmentInput" placeholder="EX. Projecteur">
+                    <select id="equipmentInput">
+                        <option disabled selected>Sélectionnez un équipement</option>
+                    </select>
                     <button id="addEquipment" type="button">+</button>
                     <ul id="equipmentList"></ul>
                 </div>
@@ -100,5 +97,7 @@
             <input type="submit" value="Enregistrer">
         </form>
     </div>
-    <script src="FormulaireEnregistrement.js"></script>
+    <script src="assets/js/resourceRegistrationForm.js"></script>
+    <script src="assets/js/jquery-3.7.1.slim.min.js"></script>
+    <script src="assets/js/main.js"></script>
 </body>

@@ -1,10 +1,7 @@
 
 
 document.addEventListener('DOMContentLoaded', function () {
-    console.log('Le DOM est chargé.');
-
     document.getElementById('addEquipment').addEventListener('click', function () {
-        console.log('Le bouton + a été cliqué.');
         var input = document.getElementById('equipmentInput');
         var equipmentName = input.value.trim();
         console.log('Équipement:', equipmentName);
@@ -13,8 +10,6 @@ document.addEventListener('DOMContentLoaded', function () {
             var li = document.createElement('li');
             li.className = 'equipment-item';
             li.textContent = equipmentName;
-
-            console.log('Équipement:', li.textContent);
 
             var removeBtn = document.createElement('button');
             removeBtn.textContent = 'x';
@@ -69,25 +64,37 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
         // Créez un objet avec toutes les données collectées
-        var formData = {
-            resourceName: resourceName,
-            maxCapacity: maxCapacity,
-            areaSize: areaSize,
+        const formData = {
+            name: resourceName,
+            capacity: maxCapacity,
+            size: areaSize,
             startTime: startTime,
             endTime: endTime,
-            resourceType: resourceType,
+            type: resourceType,
             isAccessible: isAccessible,
             authorizedUsers: authorizedUsers,
-            equipmentNames: equipmentNames
+            equipments: equipmentNames
         };
 
 
         // Affichez les données du formulaire dans la console pour vérification
         console.log('Données du formulaire:', formData);
 
-        // Ici, le code pour envoyer les données "formData" au serveur 
+        const response = fetch('http://localhost:3000/resources', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        });
 
-
+        response.then(res => {
+            if (res.ok) {
+                alert('Ressource enregistrée avec succès!');
+            } else {
+                alert('Erreur lors de l\'enregistrement de la ressource');
+                console.log(res.statusText)
+            }
+        });
     });
-}
-);
+});
