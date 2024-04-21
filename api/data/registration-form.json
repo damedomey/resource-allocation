@@ -54,56 +54,14 @@
         "label": "Accessibilité handicapé"
     },
     {
-        "type": "group",
+        "type": "multi-select",
         "label": "Utilisateurs autorisés",
-        "values": [
-            {
-                "type": "checkbox",
-                "id": "students",
-                "name": "userType",
-                "value": "etudiants",
-                "label": "Étudiants"
-            },
-            {
-                "type": "checkbox",
-                "id": "teachers",
-                "name": "userType",
-                "value": "profs",
-                "label": "Profs"
-            },
-            {
-                "type": "checkbox",
-                "id": "managers",
-                "name": "userType",
-                "value": "manager",
-                "label": "Manager"
-            },
-            {
-                "type": "checkbox",
-                "id": "alternating",
-                "name": "userType",
-                "value": "alternances",
-                "label": "Alternances"
-            },
-            {
-                "type": "checkbox",
-                "id": "others",
-                "name": "userType",
-                "value": "autre",
-                "label": "Autre"
-            }
-        ]
+        "values": ["Étudiants", "Profs", "Manager", "Alternances", "Autre"]
     },
     {
         "name": "equipmentContainer",
         "label": "Équipements disponibles",
         "type": "multi-select",
-        "options": [
-            {"value": "projector", "text": "Projecteur"},
-            {"value": "whiteboard", "text": "Tableau blanc"},
-            {"value": "computer", "text": "Ordinateur"},
-            {"value": "video_conference", "text": "Matériel de vidéoconférence"}
-        ]
+        "values": ["Projecteur", "Tableau blanc", "Ordinateur", "Matériel de vidéoconférence"]
     }
-    
 ]

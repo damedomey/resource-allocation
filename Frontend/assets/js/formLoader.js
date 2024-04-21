@@ -61,6 +61,12 @@ function createForm(containerId, fields) {
             case 'select':
                 form.appendChild(createSelectField(field));
                 break;
+            case 'group':
+                form.appendChild(createGroupField(field));
+                break;
+            case 'multi-select':
+                form.appendChild(createMultiSelectField(field));
+                break;
             default:
                 console.error('Field type not supported:', field.type);
 
@@ -109,7 +115,7 @@ function createCheckboxField(field) {
 
     div.innerHTML = `
                     <div class="form-check checkbox-style checkbox-primary mb-30">
-                        <input class="form-check-input" type="checkbox" value="" id="${fieldId}" />
+                        <input class="form-check-input" type="checkbox" id="${fieldId}" />
                         <label class="form-check-label" for="${fieldId}">
                             description
                         </label>
@@ -155,6 +161,54 @@ function createSelectField(field) {
         option.textContent = value;
         select.appendChild(option);
     }
+
+    return div;
+}
+
+function createGroupField(groupField) {
+    const div = document.createElement('div');
+    div.className = 'row';
+    div.innerHTML = `
+            <div class="col-12">
+                <label>${groupField.label}</label>
+            </div>
+        `;
+    for (const field of groupField.values) {
+        const col6 = document.createElement('div');
+        col6.className = 'col-6';
+
+        col6.appendChild(createInputField(field));
+        div.appendChild(col6);
+    }
+    return div;
+}
+
+function createMultiSelectField(multiSelectField) {
+    const fieldId = multiSelectField.name + Math.random().toString(36).substring(7);
+    const selectedContainerId = fieldId + 'Selected';
+
+    const div = document.createElement('div');
+    div.innerHTML = `<label>${multiSelectField.label}</label>
+                <div class="add-multiple-container">
+                    <div style="margin-bottom: 20px;" class="select-style-1">
+                        <select class="col-9 col-md-4">
+                            <option disabled selected>Choose</option>
+                        </select>
+                        <button class="add-multiple-button" id="${fieldId}" type="button">+</button>
+                        <ul id="${selectedContainerId}"></ul>
+                    </div>
+                </div>`;
+
+    const select = div.getElementsByTagName('select')[0];
+    for (const value of multiSelectField.values) {
+        const option = document.createElement('option');
+        option.value = value;
+        option.textContent = value;
+
+        select.appendChild(option);
+    }
+
+    // todo: multi select field
 
     return div;
 }
