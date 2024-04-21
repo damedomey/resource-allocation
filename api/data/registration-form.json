@@ -1,100 +1,62 @@
 [
     {
         "type": "text",
-        "id": "resourceName",
         "name": "resourceName",
         "required": true,
-        "placeholder": "Indiquez le nom officiel de la ressource",
+        "description": "Indiquez le nom officiel de la ressource",
         "label": "Nom de la ressource"
     },
     {
         "type": "number",
-        "id": "maxCapacity",
         "name": "maxCapacity",
         "required": true,
-        "placeholder": "Nombre maximum de personnes pouvant occuper la ressource",
+        "description": "Nombre maximum de personnes pouvant occuper la ressource",
         "label": "Capacité maximale"
     },
     {
         "type": "number",
-        "id": "areaSize",
         "name": "areaSize",
         "required": true,
-        "placeholder": "Surface totale de la ressource en mètres carrés",
+        "description": "Surface totale de la ressource en mètres carrés",
         "label": "Superficie en m²"
     },
     {
-        "groupLabel": "Plage horaire d'utilisation",
-        "fields": [
+        "type": "group",
+        "label": "Plage horaire d'utilisation",
+        "values": [
             {
                 "type": "time",
-                "id": "startTime",
                 "name": "startTime",
                 "required": true,
-                "placeholder": "EX. 08h:00",
+                "description": "EX. 08h:00",
                 "label": "Début"
             },
             {
                 "type": "time",
-                "id": "endTime",
                 "name": "endTime",
                 "required": true,
-                "placeholder": "EX. 17h:00",
+                "description": "EX. 17h:00",
                 "label": "Fin"
             }
         ]
     },
     {
         "type": "select",
-        "id": "resourceType",
         "name": "resourceType",
         "required": true,
         "label": "Type d'occupation de la ressource",
-        "options": [
-            {
-                "value": "",
-                "text": "Select type",
-                "disabled": true,
-                "selected": true
-            },
-            {
-                "value": "bureau",
-                "text": "Bureau"
-            },
-            {
-                "value": "salle_reunion",
-                "text": "Salle de réunion"
-            },
-            {
-                "value": "individuel",
-                "text": "Individuel"
-            },
-            {
-                "value": "salle_cours",
-                "text": "Salle de cours"
-            },
-            {
-                "value": "amphi",
-                "text": "Amphi"
-            },
-            {
-                "value": "salle_tp",
-                "text": "Salle de TP"
-            }
-        ]
+        "values": ["Bureau", "Salle de réunion", "Individuel", "Salle de cours", "Amphi", "Salle de TP"]
     },
     {
         "type": "checkbox",
-        "id": "accessible",
         "name": "accessible",
         "required": false,
-        "label": "Accessibilité handicapé",
-        "checkboxLabel": "Accessibilité handicapé",
-        "icon": "♿"
+        "label": "Accessibilité handicapé"
     },
     {
+        "type": "group",
         "label": "Utilisateurs autorisés",
-        "checkboxes": [
+        "values": [
             {
                 "type": "checkbox",
                 "id": "students",
@@ -133,9 +95,9 @@
         ]
     },
     {
-        "id": "equipmentContainer",
+        "name": "equipmentContainer",
         "label": "Équipements disponibles",
-        "type": "equipmentSelector",
+        "type": "multi-select",
         "options": [
             {"value": "projector", "text": "Projecteur"},
             {"value": "whiteboard", "text": "Tableau blanc"},
