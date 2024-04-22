@@ -105,7 +105,6 @@
         .then(response => response.json())
         .then(data => {
             data.forEach(resource => {
-                console.log(resource);
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
                         <td>${resource.resourceName}</td>
