@@ -1,4 +1,5 @@
 const fs = require("fs");
+const database = require('../config/database.js');
 
 const getForm = async (req, res) => {
     fs.readFile('data/registration-form.json', 'utf8', (err, data) => {
@@ -13,9 +14,10 @@ const getForm = async (req, res) => {
 }
 
 const createResource = async (req, res) => {
-    // Get request body
     const resource = req.body;
-    console.log(resource);
+    resource.id = Math.random().toString(36);
+    await database.push("/resources[]", resource);
+    res.send(resource);
 }
 
 module.exports = {createResource, getForm}
