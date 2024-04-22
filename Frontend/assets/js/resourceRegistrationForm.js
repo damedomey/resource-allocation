@@ -17,10 +17,10 @@
             body: JSON.stringify(data)
         }).then(response => {
             if (response.ok) {
-                alert('Ressource enregistrée avec succès!');
+                alert('Resource successfully saved !');
+                form.reset();
             } else {
-                alert('Erreur lors de l\'enregistrement de la ressource');
-                console.log(response.statusText)
+                alert('Unable to save the resource !');
             }
         }).catch(error => console.error('Erreur lors de l\'enregistrement de la ressource:', error));
     });

@@ -15,9 +15,24 @@ const getForm = async (req, res) => {
 
 const createResource = async (req, res) => {
     const resource = req.body;
-    resource.id = Math.random().toString(36);
+    const min = 1000000000;
+    const max = 9999999999;
+    resource.id = Math.round(Math.random() * (max - min) + min);
+
     await database.push("/resources[]", resource);
     res.send(resource);
 }
 
-module.exports = {createResource, getForm}
+const getAllResources = async (req, res) => {
+    const resources = await database.getData("/resources");
+    res.send(resources);
+}
+
+const deleteResource = async (req, res) => {
+    const resourceId = req.params.id;
+    const index = await database.getIndex(`/resources`, resourceId, "id");
+    await database.delete(`/resources[${index}]`);
+    res.send({id: resourceId});
+}
+
+module.exports = {createResource, getForm, getAllResources, deleteResource}
