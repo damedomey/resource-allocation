@@ -1,262 +1,46 @@
-body {
-    font-family: Arial, sans-serif;
-    background: #f4f4f4;
-    margin: 0;
-    padding: 20px;
-  }
-  
-  .form-container {
-    max-width: 600px;
-    margin: 0 auto;
-    background: #fff;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+.add-multiple-container {
+    border: 2px dashed #cccccc;
     border-radius: 8px;
-  }
-  
-  form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  h1 {
-    color: #333;
-    margin-bottom: 20px;
-    text-align: center;
-  }
-  
-  label {
-    margin-bottom: 5px;
-    color: #333;
-  }
-  
-  input[type=text],
-  input[type=number],
-  input[type=submit] {
     padding: 10px;
     margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  input[type=submit] {
-    background: #5f87e7;
+}
+
+.add-multiple-button {
+    padding: 5px 10px;
+    border-radius: 50%; /* Pour rendre le bouton rond */
+    border: none;
+    background-color: #007BFF; /* Bleu */
     color: white;
     cursor: pointer;
-    border: none;
-  }
-  
-  input[type=submit]:hover {
-    background: #5071c2;
-  }
-
-  .time-container {
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-    border: 2px solid #ccc;
-    border-radius: 8px;
-    margin-bottom: 20px;
-  }
-  
-  h2 {
-    margin-bottom: 10px; /* ajustez selon vos besoins */
-  }
-  
-  .inputs-container {
-    display: flex;
-    justify-content: space-around; /* cela va répartir l'espace disponible autour des éléments */
-    gap: 20px; /* ajoute de l'espace entre les éléments */
-  }
-  
-  .input-group {
-    flex: 1; /* donne une flexibilité égale à chaque groupe pour occuper l'espace */
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* aligne les labels et les inputs au centre */
-  }
-
-
-  .input-group label {
-    margin-bottom: 5px;
-    color: #333;
-  }
-
-  .input-group input[type="time"] {
-    width: 100%; /* les inputs utilisent toute la largeur disponible du .input-group */
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-
-  /*Type d'occupation de la ressource*/
-
-  .select-container {
-    margin-bottom: 20px;
-    position: relative;
-  }
-  
-  .select-container .select-wrapper {
-    position: relative;
-  }
-  
-  .select-container .select-wrapper::after {
-    content: '▼';
-    position: absolute;
-    right: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-    pointer-events: none;
-    color: #333;
-  }
-  
-  .select-container select {
-    width: 100%;
-    padding: 8px;
-    border-radius: 20px;
-    border: 1px solid #ccc;
-    background-color: white;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    cursor: pointer;
-    padding-right: 30px; /* make room for the pseudo-element */
-  }
-  
-  /* Adjust for browsers that don't support appearance none */
-  .select-container select:-moz-focusring {
-    color: transparent;
-    text-shadow: 0 0 0 #000;
-  }
-
-
-
-
-  /*  Accessibilité handicapé  */
-
-  .checkbox-wrapper {
-    display: flex;
-    align-items: center;
-    border: 2px dashed #cccccc;
-    border-radius: 8px;
-    padding: 8px;
-    margin-bottom: 20px; /* Espace après le conteneur de la case à cocher */
-  }
-  
-  .custom-checkbox {
-    opacity: 0;
-    position: absolute;
-  }
-  
-  .checkbox-label {
-    display: flex;
-    align-items: center; /* Centrer l'icône et le texte verticalement */
-    cursor: pointer;
-  }
-  
-  .checkbox-icon {
-    background: purple; /* Fond de l'icône */
-    color: white; /* Couleur du fauteuil roulant ou de l'icône */
-    padding: 5px; /* Espace autour de l'icône */
-    margin-left: 10px; /* Espace entre le texte et l'icône */
-    border-radius: 4px; /* Bords arrondis de l'icône */
-  }
-  
-  /* Style pour la case à cocher lorsqu'elle est cochée */
-  .custom-checkbox:checked + .checkbox-label .checkbox-icon {
-    background: darkpurple; /* Fond de l'icône lorsqu'elle est cochée */
-  }
-  
-  /* Ajouter des transitions si vous le souhaitez pour animer le fond de l'icône */
-  .checkbox-icon {
-    transition: background-color 0.3s;
-  }
-  
-
-  /* l'apparence des cases à cocher Utilisateurs autorisés */
-
-
-  .users-checkbox-container {
-    border: 2px dashed #cccccc;
-    border-radius: 8px;
-    padding: 10px;
-    margin-bottom: 20px;
-}
-
-.main-label {
-    display: block;
-    text-align: center;
-    margin-bottom: 10px;
-}
-
-.checkboxes-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Crée deux colonnes */
-    gap: 10px;
-}
-
-.checkbox-wrapper-users {
-    display: flex;
-    align-items: center;
-}
-
-.checkbox-label {
-    margin-left: 5px;
-}
-
-/* Ajoutez plus de styles ici selon vos besoins pour personnaliser l'apparence des cases à cocher */
-
-
-/* equipements disponibles */
-
-.equipment-container {
-  margin-bottom: 20px;
-}
-
-#equipmentInput {
-  padding: 5px;
-  margin-right: 5px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-}
-
-#addEquipment {
-  padding: 5px 10px;
-  border-radius: 50%; /* Pour rendre le bouton rond */
-  border: none;
-  background-color: #007BFF; /* Bleu */
-  color: white;
-  cursor: pointer;
 }
 
 #equipmentList {
-  list-style: none;
-  padding-left: 0;
-  display: flex; /* Utilisez flex pour rendre les enfants flexibles */
-  flex-wrap: wrap; /* Permet aux éléments de passer à la ligne si nécessaire */
-  gap: 10px; /* Espace entre les éléments */
+    list-style: none;
+    padding-left: 0;
+    display: flex; /* Utilisez flex pour rendre les enfants flexibles */
+    flex-wrap: wrap; /* Permet aux éléments de passer à la ligne si nécessaire */
+    gap: 10px; /* Espace entre les éléments */
 }
 
 .equipment-item {
-  background-color: #28A745; /* Vert */
-  color: white;
-  padding: 5px;
-  margin-top: 5px;
-  border-radius: 4px;
-  display: inline-flex; /* Utilisez inline-flex ici pour contenir le contenu */
-  justify-content: center;
-  align-items: center;
-  max-width: fit-content; /* S'assure que le contenu détermine la largeur */
-  white-space: nowrap; /* Empêche le retour à la ligne */
-   margin-right: 10px; /*Supprimez ou ajustez si nécessaire en fonction du gap de #equipmentList */
+    background-color: #28A745; /* Vert */
+    color: white;
+    padding: 5px;
+    margin-top: 5px;
+    border-radius: 4px;
+    display: inline-flex; /* Utilisez inline-flex ici pour contenir le contenu */
+    justify-content: center;
+    align-items: center;
+    max-width: fit-content; /* S'assure que le contenu détermine la largeur */
+    white-space: nowrap; /* Empêche le retour à la ligne */
+    margin-right: 10px; /*Supprimez ou ajustez si nécessaire en fonction du gap de #equipmentList */
 
 }
 
 .equipment-item button {
-  border: none;
-  background-color: transparent;
-  color: white;
-  cursor: pointer;
-  margin-left: 10px; /* Ajoute un peu d'espace entre le texte et le bouton */
+    border: none;
+    background-color: transparent;
+    color: white;
+    cursor: pointer;
+    margin-left: 10px; /* Ajoute un peu d'espace entre le texte et le bouton */
 }
