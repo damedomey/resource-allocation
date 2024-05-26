@@ -195,7 +195,7 @@ function createMultiSelectField(multiSelectField) {
                             <option disabled selected>Choose</option>
                         </select>
                         <button class="add-multiple-button" id="${fieldId}" type="button">+</button>
-                        <ul id="${selectedContainerId}"></ul>
+                        <ul class="row" id="${selectedContainerId}"></ul>
                     </div>
                 </div>`;
 
@@ -208,9 +208,33 @@ function createMultiSelectField(multiSelectField) {
         select.appendChild(option);
     }
 
-    // todo: multi select field
+    addSelectEventListeners(div);
 
     return div;
+}
+
+function addSelectEventListeners(group) {
+    const addMultipleButton = group.getElementsByTagName("button")[0];
+
+    addMultipleButton.addEventListener('click', () => {
+        const select = addMultipleButton.previousElementSibling;
+        const selectedContainer = select.nextElementSibling.nextElementSibling;
+        const selectedValue = select.value;
+        if (selectedValue === 'Choose') return;
+
+        const div = document.createElement('div');
+        div.className = 'col-3 p-3';
+        div.innerHTML = `<div class="toast show">
+                        <div class="toast-header">
+                            <strong class="me-auto">${selectedValue}</strong>
+                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                        </div>
+                    </div>`;
+
+        selectedContainer.appendChild(div);
+
+        select.value = 'Choose';
+    });
 }
 
 function createSubmitButton(){
