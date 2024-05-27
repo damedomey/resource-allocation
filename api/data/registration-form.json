@@ -54,6 +54,7 @@
         "label": "Accessibilité handicapé"
     },
     {
+        "name": "authorizedUsers",
         "type": "multi-select",
         "label": "Utilisateurs autorisés",
         "values": ["Étudiants", "Profs", "Manager", "Alternances", "Autre"]

@@ -191,11 +191,11 @@ function createMultiSelectField(multiSelectField) {
     div.innerHTML = `<label>${multiSelectField.label}</label>
                 <div class="add-multiple-container">
                     <div style="margin-bottom: 20px;" class="select-style-1">
-                        <select class="col-9 col-md-4">
+                        <select class="col-9 col-md-4" name="${multiSelectField.name}">
                             <option disabled selected>Choose</option>
                         </select>
                         <button class="add-multiple-button" id="${fieldId}" type="button">+</button>
-                        <ul class="row" id="${selectedContainerId}"></ul>
+                        <ul class="row multi-select-container" id="${selectedContainerId}"></ul>
                     </div>
                 </div>`;
 
