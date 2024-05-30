@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/main.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+          integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
+    <title>Resource allocation</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container container-fluid">
+            <a class="navbar-brand" href="#">Resource allocation</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                    aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link" aria-current="page" href="Resources.html">Resources</a>
+                    <a class="nav-link active" href="#">Dashboard</a>
+                    <a class="nav-link">About</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1>Dashboard</h1>
+            </div>
+            <div>
+                <div>
+                    <label for="filterType">Type d'occupation:</label>
+                    <select id="filterType" multiple>
+                        <option value="Bureau">Bureau</option>
+                        <option value="Individuel">Individuel</option>
+                        <option value="Collectif">Collectif</option>
+                        <option value="Amphi">Amphi</option>
+                    </select>
+                    <input type="number" id="filterCapacity" placeholder="Capacité max" min="1">
+                    <label for="filterUsers">Utilisateurs autorisés:</label>
+                    <select id="filterUsers" multiple>
+                        <option value="Étudiants">Étudiants</option>
+                        <option value="Profs">Profs</option>
+                        <option value="Manager">Manager</option>
+                        <option value="Alternances">Alternances</option>
+                        <option value="Autre">Autre</option>
+                    </select>
+                    <label for="filterEquipment">Équipements disponibles:</label>
+                    <select id="filterEquipment" multiple>
+                        <option value="Projecteur">Projecteur</option>
+                        <option value="Tableau blanc">Tableau blanc</option>
+                        <option value="Ordinateur">Ordinateur</option>
+                        <option value="Matériel de vidéoconférence">Matériel de vidéoconférence</option>
+                    </select>
+                    <label for="filterAccessible">Accessible:</label>
+                    <input type="checkbox" id="filterAccessible">
+                    <button onclick="applyFilters()" style="background-color: blue; color: white;">Filtrer</button>
+                </div>
+                <div id="infoBox" style="position: absolute; visibility: hidden; background: white; border: 1px solid #ccc; padding: 10px; pointer-events: none;">
+                    Hover over a rectangle to see information here.
+                </div>
+                
+            </div>
+        </div>
+    </div>    
+    <script src="https://d3js.org/d3.v6.min.js"></script>  
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/jquery-3.7.1.slim.min.js"></script>
+    <script src="./assets/js/Dashboard.js" defer></script>
+
+</body>
+</html>

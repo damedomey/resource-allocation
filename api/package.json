@@ -27,6 +27,7 @@
   "homepage": "https://github.com/damedomey/resource-allocation#readme",
   "dependencies": {
     "cors": "^2.8.5",
+    "d3": "^7.9.0",
     "express": "^4.19.2",
     "node-json-db": "^2.3.0"
   }
