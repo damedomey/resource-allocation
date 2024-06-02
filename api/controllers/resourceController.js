@@ -35,4 +35,21 @@ const deleteResource = async (req, res) => {
     res.send({id: resourceId});
 }
 
-module.exports = {createResource, getForm, getAllResources, deleteResource}
+const getResourceById = async (req, res) => {
+    const resourceId = req.params.id;
+    res.send(await getElementByProperty("id", resourceId, "/resources"));
+}
+
+async function getElementByProperty(propertyName, propertyValue, dataPath) {
+    const data = await database.getData(dataPath);
+    if (data) {
+        for (const element of data) {
+            if (element[propertyName].toString() === propertyValue.toString()) {
+                return element;
+            }
+        }
+    }
+    return null;
+}
+
+module.exports = {createResource, getForm, getAllResources, getResourceById,deleteResource}
