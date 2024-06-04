@@ -59,7 +59,17 @@
         return desiredTime.toISOString().slice(0, 16) + 'Z'; // Format and slice to get "YYYY-MM-DDTHH:MM:SSZ"
     }
 
-    function createReservation (payload) {
+    function createReservation (resourceId) {
+        const formData = new FormData(document.forms[0]);
+
+        const payload = JSON.stringify({
+            name: formData.get('name'),
+            numberOfPeople: formData.get('minCapacity'),
+            startTime: formatDatetimeLocalValue(formData.get('startTime')),
+            endTime: formatDatetimeLocalValue(formData.get('endTime')),
+            resourceId: resourceId
+        });
+
         fetch('http://localhost:3000/reservations', {
             method: 'POST',
             body: payload,
@@ -79,6 +89,7 @@
 
     const form = document.getElementById('reservationCreationFormContainer');
     form.addEventListener('submit', function (event) {
+        document.getElementById('preview').innerHTML = ""
         event.preventDefault();
         event.stopPropagation();
 
@@ -106,23 +117,15 @@
                 const preview = document.getElementById('preview');
 
                 jsonResponse.forEach(resource => {
-                    const payload = JSON.stringify({
-                        name: formData.get('name'),
-                        numberOfPeople: formData.get('minCapacity'),
-                        startTime: formatDatetimeLocalValue(formData.get('startTime')),
-                        endTime: formatDatetimeLocalValue(formData.get('endTime')),
-                        resourceId: resource.id
-                    });
-
                     const div = document.createElement('div');
-                    div.className = 'card';
+                    div.className = 'card mb-1';
                     div.innerHTML = `
                         <div class="card-body row justify-content-between">
                             <div class="col-9">
-                                ${resource.resourceName}
+                                ${resource.resourceName} (capacité: ${resource.maxCapacity})
                             </div>
                             <div class="col-2">
-                                <button class="btn btn-primary" onclick="createReservation('${payload}')">Réserver</button>
+                                <button class="btn btn-primary" onclick="createReservation(${resource.id})">Réserver</button>
                             </div>
                         </div>`;
 
