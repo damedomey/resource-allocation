@@ -24,7 +24,7 @@ const findAvailableResources = async (criteria) => {
 
     const conflictingReservationsIds = conflictingReservations.map((reservation) => reservation.resourceId);
 
-    return resources.filter(async (resource) => {
+    return resources.filter((resource) => {
         const startTimeHour = startTime.getHours() * 60 + startTime.getMinutes();
         const endTimeHour = endTime.getHours() * 60 + endTime.getMinutes();
         const resourceStartTimeHour = createDateFromTimeString(resource.startTime).getHours() * 60 + createDateFromTimeString(resource.startTime).getMinutes();
@@ -39,8 +39,9 @@ const findAvailableResources = async (criteria) => {
         );
     });
 };
+
 function createDateFromTimeString(timeString) {
-    const [hours, minutes] = timeString.split(':').map(Number); // Split and convert to numbers
-    return new Date(0, 0, 0, hours, minutes); // Create Date object with 0 for year, month, day
+    const [hours, minutes] = timeString.split(':').map(Number);
+    return new Date(0, 0, 0, hours, minutes);
 }
 module.exports = {findAvailableResources};
