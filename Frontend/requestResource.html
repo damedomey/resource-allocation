@@ -2,11 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/main.css"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+          integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <link rel="stylesheet" href="assets/css/resourceRegistrationForm.css">
     <title>Resource allocation</title>
 </head>
@@ -35,28 +38,13 @@
         </div>
 
         <div class="card-style mb-30">
-            <form  class="row needs-validation" action="/search" method="POST" novalidate>
-                <label for="resourceType">Type de ressource:</label>
-                <select id="resourceType" name="resourceType">
-                    <option value="">Toutes</option>
-                    <option value="Salle">Salle</option>
-                    <option value="Bureau">Bureau</option>
-                    <option value="Autre">Autre</option>
-                </select>
+            <form id="reservationCreationFormContainer" class="row needs-validation" action="" method="POST" novalidate>
 
-                <label for="minCapacity">Capacité minimale:</label>
-                <input type="number" id="minCapacity" name="minCapacity" min="1">
-
-                <label for="startTime">Heure de début:</label>
-                <input type="datetime-local" id="startTime" name="startTime">
-
-                <label for="endTime">Heure de fin:</label>
-                <input type="datetime-local" id="endTime" name="endTime">
-
-                <button type="submit">Rechercher</button>
             </form>
         </div>
-        <!-- end card -->
+
+        <div id="preview" class="mb-10">
+        </div>
     </div>
 </div>
 
@@ -64,5 +52,86 @@
 <script src="assets/js/jquery-3.7.1.slim.min.js"></script>
 <script src="assets/js/formLoader.js"></script>
 <script src="assets/js/resourceRegistrationForm.js"></script>
+<script>
+    function formatDatetimeLocalValue(dateTimeString) {
+        const desiredTime = new Date(dateTimeString);
+        desiredTime.setHours(8, 0, 0, 0); // Set desired hour, minute, second, and milliseconds
+        return desiredTime.toISOString().slice(0, 16) + 'Z'; // Format and slice to get "YYYY-MM-DDTHH:MM:SSZ"
+    }
+
+    function createReservation (payload) {
+        fetch('http://localhost:3000/reservations', {
+            method: 'POST',
+            body: payload,
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(response => {
+            if (response.ok) {
+                return response.json();
+            }
+            throw new Error('Request failed!');
+        }, networkError => console.log(networkError.message))
+            .then(jsonResponse => {
+                console.log(jsonResponse);
+            })
+    }
+
+    const form = document.getElementById('reservationCreationFormContainer');
+    form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        const formData = new FormData(document.forms[0]);
+
+        fetch('http://localhost:3000/reservations/check-availability', {
+            method: 'POST',
+            body: JSON.stringify({
+                name: formData.get('name'),
+                resourceType: formData.get('resourceType'),
+                minCapacity: formData.get('minCapacity'),
+                startTime: formatDatetimeLocalValue(formData.get('startTime')),
+                endTime: formatDatetimeLocalValue(formData.get('endTime')),
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(response => {
+            if (response.ok) {
+                return response.json();
+            }
+            throw new Error('Request failed!');
+        }, networkError => console.log(networkError.message))
+            .then(jsonResponse => {
+                const preview = document.getElementById('preview');
+
+                jsonResponse.forEach(resource => {
+                    const payload = JSON.stringify({
+                        name: formData.get('name'),
+                        numberOfPeople: formData.get('minCapacity'),
+                        startTime: formatDatetimeLocalValue(formData.get('startTime')),
+                        endTime: formatDatetimeLocalValue(formData.get('endTime')),
+                        resourceId: resource.id
+                    });
+
+                    const div = document.createElement('div');
+                    div.className = 'card';
+                    div.innerHTML = `
+                        <div class="card-body row justify-content-between">
+                            <div class="col-9">
+                                ${resource.resourceName}
+                            </div>
+                            <div class="col-2">
+                                <button class="btn btn-primary" onclick="createReservation('${payload}')">Réserver</button>
+                            </div>
+                        </div>`;
+
+                    preview.appendChild(div);
+                });
+                console.log(jsonResponse);
+            })
+    }, false);
+
+</script>
 </body>
 </html>

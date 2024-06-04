@@ -8,7 +8,6 @@
     // Load resource creation form
     const resourceCreationFormContainer = document.getElementById('resourceCreationFormContainer');
     if (resourceCreationFormContainer) {
-        console.log("Building the resource creation form")
         fetch('http://localhost:3000/resources/form')
             .then(response => {
                 if (!response.ok) {
@@ -19,6 +18,55 @@
             .then(fields => { createForm(resourceCreationFormContainer.getAttribute('id'), fields); });
     }
 
+    // Load reservation creation form
+    const reservationCreationFormContainer = document.getElementById('reservationCreationFormContainer');
+    if (reservationCreationFormContainer) {
+        const fields = [
+            {
+                "type": "text",
+                "name": "name",
+                "required": true,
+                "description": "Votre nom complet",
+                "label": "Nom du demandeur"
+            },
+            {
+                "type": "select",
+                "name": "resourceType",
+                "required": true,
+                "label": "Type d'occupation de la ressource",
+                "values": ["Bureau", "Salle de réunion", "Individuel", "Salle de cours", "Amphi", "Salle de TP"]
+            },
+            {
+                "type": "number",
+                "name": "minCapacity",
+                "required": true,
+                "description": "Nombre de personnes",
+                "label": "Capacité minimale requise"
+            },
+            {
+                "type": "group",
+                "label": "Plage horaire d'utilisation",
+                "values": [
+                    {
+                        "type": "datetime-local",
+                        "name": "startTime",
+                        "required": true,
+                        "description": "",
+                        "label": "Début"
+                    },
+                    {
+                        "type": "datetime-local",
+                        "name": "endTime",
+                        "required": true,
+                        "description": "",
+                        "label": "Fin"
+                    }
+                ]
+            },
+        ];
+
+        createForm('reservationCreationFormContainer', fields);
+    }
 
     // Active validators
     // Fetch all the forms we want to apply custom Bootstrap validation styles to
