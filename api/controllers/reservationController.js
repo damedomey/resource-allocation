@@ -8,6 +8,29 @@ const getAvailableResources = async (req, res) => {
     res.send(resources);
 }
 
+const getAllReservations = async (req, res) => {
+    let reservations = [];
+    try {
+        reservations = await database.getData('/reservations');
+    } catch (error) {
+        await database.push('/reservations', []);
+    }
+
+    let resources = {};
+    try {
+        (await database.getData('/resources')).forEach(resource => {
+            resources[resource.id] = resource;
+        });
+    } catch (error) {
+        await database.push('/resources', []);
+    }
+    reservations.map(reservation => {
+        reservation.resource = resources[reservation.resourceId];
+        return reservation;
+    })
+    res.send(reservations);
+}
+
 const makeReservation = async (req, res) => {
     const resourceId = parseInt(req.body.resourceId);
     const startTime = req.body.startTime;
@@ -63,4 +86,5 @@ const createReservation = async (reservation) => {
         return null;
     }
 };
-module.exports = {getAvailableResources, makeReservation}
+
+module.exports = {getAvailableResources, getAllReservations, makeReservation}
