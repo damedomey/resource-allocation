@@ -95,7 +95,7 @@
 
         const formData = new FormData(document.forms[0]);
 
-        fetch('http://localhost:3000/reservations/check-availability', {
+        fetch('/check-availability', {
             method: 'POST',
             body: JSON.stringify({
                 name: formData.get('name'),

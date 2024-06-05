@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     let resources = [];
+    let reservations = [];
 
     // Chargement des données depuis l'API
     fetch('http://localhost:3000/resources')
@@ -7,6 +8,14 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(data => {
             resources = data; // Stocke les données dans la variable 'resources'
             updateLayout(resources);
+        });
+
+    // Charger les réservations
+    fetch('http://localhost:3000/reservations')
+        .then(response => response.json())
+        .then(data => {
+            reservations = data;
+            updateLayout();  // Mettre à jour après chargement des deux sets de données
         });
 
     // Initialisation du tooltip pour afficher des détails
@@ -42,43 +51,15 @@ document.addEventListener("DOMContentLoaded", function () {
             .style('width', '100%')
             .style('height', 'auto');
 
+        const reservedIds = new Set(reservations.map(r => r.resourceId));  // Créer un set des IDs réservés
         const rects = svg.selectAll('rect').data(filteredResources, d => d.id);
-        // rects.enter().append('rect').merge(rects)
-        //     .attr('x', (_, i) => (i % numItemsPerRow) * (rectWidth + spacing) + spacing)
-        //     .attr('y', (_, i) => Math.floor(i / numItemsPerRow) * (rectHeight + spacing) + spacing)
-        //     .attr('width', rectWidth)
-        //     .attr('height', rectHeight)
-        //     .attr('fill', 'lightblue')
-        //     .on('mouseover', function(event, d) {
-        //         console.log('Données du rectangle survolé:', d);
-        //         tooltip.html(`Nom: ${d.resourceName}<br>Capacité Max: ${d.maxCapacity}<br>Taille: ${d.areaSize}<br>Type: ${d.resourceType}<br>ID: ${d.id}`)
-        //                .style('visibility', 'visible')
-        //                .style('left', (event.pageX + 15) + 'px')
-        //                .style('top', (event.pageY - 35) + 'px');
-        //     })
-        //     .on('mouseout', function() {
-        //         tooltip.style('visibility', 'hidden');
-        //     });
-        // rects.enter().append('rect').merge(rects)
-        //     .attr('x', (_, i) => (i % numItemsPerRow) * (rectWidth + spacing) + spacing)
-        //     .attr('y', (_, i) => Math.floor(i / numItemsPerRow) * (rectHeight + spacing) + spacing)
-        //     .attr('width', rectWidth)
-        //     .attr('height', rectHeight)
-        //     .attr('fill', 'lightblue')
-        //     .on('mouseover', function (event, d) {
-        //         const infoBox = document.getElementById('infoBox');
-        //         infoBox.style.display = 'block';
-        //         infoBox.innerHTML = `Nom: ${d.resourceName}<br>Capacité Max: ${d.maxCapacity}<br>Taille: ${d.areaSize}<br>Type: ${d.resourceType}<br>ID: ${d.id}`;
-        //     })
-        //     .on('mouseout', function () {
-        //         document.getElementById('infoBox').style.display = 'none';
-        //     });
         rects.enter().append('rect').merge(rects)
             .attr('x', (_, i) => (i % numItemsPerRow) * (rectWidth + spacing) + spacing)
             .attr('y', (_, i) => Math.floor(i / numItemsPerRow) * (rectHeight + spacing) + spacing)
             .attr('width', rectWidth)
             .attr('height', rectHeight)
-            .attr('fill', 'lightblue')
+            //.attr('fill', 'lightblue')
+            .attr('fill', d => reservedIds.has(d.id) ? 'red' : 'green')
             .on('mouseover', function (event, d) {
                 const infoBox = document.getElementById('infoBox');
                 infoBox.innerHTML = `Nom: ${d.resourceName}<br>Capacité Max: ${d.maxCapacity}<br>Taille: ${d.areaSize}<br>Type: ${d.resourceType}<br>ID: ${d.id}`;
