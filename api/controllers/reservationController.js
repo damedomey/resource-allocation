@@ -87,4 +87,11 @@ const createReservation = async (reservation) => {
     }
 };
 
-module.exports = {getAvailableResources, getAllReservations, makeReservation}
+const deleteReservation = async (req, res) => {
+    const resourceId = req.params.id;
+    const index = await database.getIndex(`/reservations`, resourceId, "id");
+    await database.delete(`/reservations[${index}]`);
+    res.send({id: resourceId});
+}
+
+module.exports = {getAvailableResources, getAllReservations, makeReservation, deleteReservation}

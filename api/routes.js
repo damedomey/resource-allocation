@@ -14,5 +14,6 @@ router.delete('/resources/:id', resourceController.deleteResource);
 router.post('/reservations/check-availability', reservationController.getAvailableResources);
 router.get('/reservations', reservationController.getAllReservations);
 router.post('/reservations', reservationController.makeReservation);
+router.delete('/reservations/:id', reservationController.deleteReservation);
 
 module.exports = router;

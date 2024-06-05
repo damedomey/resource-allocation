@@ -91,7 +91,7 @@
 <script src="assets/js/datatable.js"></script>
 <script>
     function deleteReservation(id) {
-        fetch(`http://localhost:3000/resources/${id}`, {
+        fetch(`http://localhost:3000/reservations/${id}`, {
             method: 'DELETE',
         })
             .then(response => location.reload())
