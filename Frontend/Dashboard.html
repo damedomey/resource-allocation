@@ -1,18 +1,20 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/main.css"/>
+    <link rel="stylesheet" href="assets/css/main.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-          integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
-          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <title>Resource allocation</title>
+
 </head>
 
 <body>
@@ -20,7 +22,7 @@
         <div class="container container-fluid">
             <a class="navbar-brand" href="#">Resource allocation</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-                    aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
@@ -72,17 +74,32 @@
                     <input type="checkbox" id="filterAccessible">
                     <button onclick="applyFilters()" style="background-color: blue; color: white;">Filtrer</button>
                 </div>
-                <div id="infoBox" style="position: absolute; visibility: hidden; background: white; border: 1px solid #ccc; padding: 10px; pointer-events: none;">
+                <div id="infoBox"
+                    style="position: absolute; visibility: hidden; background: white; border: 1px solid #ccc; padding: 10px; pointer-events: none;">
                     Hover over a rectangle to see information here.
                 </div>
-                
+            </div>
+            <div class="tooltip" style="position: absolute;
+            padding: 10px;
+            background: white;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s;
+            z-index: 1000;
+            max-width: 200px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap; ">
             </div>
         </div>
-    </div>    
-    <script src="https://d3js.org/d3.v6.min.js"></script>  
+    </div>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/jquery-3.7.1.slim.min.js"></script>
     <script src="./assets/js/Dashboard.js" defer></script>
 
 </body>
+
 </html>
